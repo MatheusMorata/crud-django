@@ -3,19 +3,20 @@ from app.models import Pessoa
 
 def home(request):
     template = "home.html"
-    pessoas = Pessoa.objects.all()
-    return render(request,template,{"pessoas":pessoas})
+    pessoa = Pessoa.objects.all()
+    return render(request,template,{"pessoas":pessoa})
 
 def salvar(request):
     template = "home.html"
     nome_post = request.POST.get("nome")
     Pessoa.objects.create(nome=nome_post)
-    pessoas = Pessoa.objects.all()
-    return render(request,template,{"pessoas":pessoas})
+    pessoa = Pessoa.objects.all()
+    return render(request,template,{"pessoas":pessoa})
 
 def editar(request,id):
+    template = "atualizar.html"
     pessoa = Pessoa.objects.get(id=id)
-    return render(request,"atualizar.html",{"pessoas":pessoa})
+    return render(request,template,{"pessoa":pessoa})
 
 def update(request,id):
     nome_post = request.POST.get("nome")

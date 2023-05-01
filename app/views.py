@@ -18,9 +18,14 @@ def editar(request,id):
     pessoa = Pessoa.objects.get(id=id)
     return render(request,template,{"pessoa":pessoa})
 
-def update(request,id):
+def atualizar(request,id):
     nome_post = request.POST.get("nome")
     pessoa = Pessoa.objects.get(id=id)
     pessoa.nome = nome_post
     pessoa.save()
+    return redirect(home)
+
+def deletar(request,id):
+    pessoa = Pessoa.objects.get(id=id)
+    pessoa.delete()
     return redirect(home)
